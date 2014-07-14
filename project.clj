@@ -9,7 +9,8 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2069"]
                  [clj-drone "0.1.8"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [domina "1.0.2"]]
 
   :ring {:handler drone-remote-cljs.core/handler}
 

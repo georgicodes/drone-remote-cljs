@@ -1,19 +1,17 @@
 (ns drone-remote-cljs.core
   (:use [compojure.core]
-        [clj-drone.core]
         [drone-remote-cljs.drone :as drone])
   (:require [compojure.handler :as handler]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [ring.util.response :as resp]))
 
 ;; defroutes macro defines a function that chains individual route
 ;; functions together. The request map is passed to each function in
 ;; turn, until a non-nil response is returned.
-(defroutes app-routes
-  ; to serve document root address
-  (GET "/" []
-    (drone/fly-drone)
-    "<p>Hello from compojure</p>")
+;;     (drone/fly-drone)
 
+(defroutes app-routes
+  (GET "/" [] (resp/redirect "index.html"))
   (route/resources "/")
   (route/not-found "Page not found"))
 
