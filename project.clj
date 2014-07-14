@@ -9,7 +9,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2069"]]
 
-  :ring {:handler modern-cljs.core/handler}
+  :ring {:handler drone-remote-cljs.core/handler}
 
    ;; cljsbuild options configuration
   :cljsbuild {:builds
