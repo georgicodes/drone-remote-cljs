@@ -1,13 +1,15 @@
 (ns drone-remote-cljs.core
   (:import (org.apache.log4j PatternLayout))
   (:use [compojure.core]
-        [drone-remote-cljs.drone :as drone])
+        [cheshire.core]
+        [ring.util.response])
   (:require [clj-logging-config.log4j :as log-config]
             [clojure.stacktrace :refer :all]
             [clojure.tools.logging :as log]
+            [drone-remote-cljs.drone :as drone]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [ring.util.response :as resp]))
+            [ring.middleware.json :as middleware]))
 
 (defn init-logger []
   (log-config/set-logger! :level :debug
@@ -17,28 +19,51 @@
 
 (defroutes app-routes
   (GET "/" []
-       (resp/redirect "index.html"))
+       (redirect "index.html"))
+
+;;   (POST "/drone-fly" {params :body}
+;;         (println params)
+;;         (println (get params :front-back-tilt))
+;;         (drone/init-drone-and-take-off)
+;;         (drone/fly [params])
+;;         {:body params})
 
   (GET "/drone-take-off" []
        (drone/init-drone-and-take-off)
-       (resp/redirect "index.html"))
+       (redirect "index.html"))
 
   (GET "/drone-land" []
        (drone/land)
-       (resp/redirect "index.html"))
+       (redirect "index.html"))
 
   (GET "/drone-left" []
-       (drone/spin-left)
-       (resp/redirect "index.html"))
+       (drone/left)
+       (redirect "index.html"))
 
   (GET "/drone-right" []
-       (drone/spin-right)
-       (resp/redirect "index.html"))
+       (drone/right)
+       (redirect "index.html"))
+
+  (GET "/drone-up" []
+       (drone/up)
+       (redirect "index.html"))
+
+  (GET "/drone-down" []
+       (drone/down)
+       (redirect "index.html"))
+
+  (GET "/drone-forward" []
+       (drone/forward)
+       (redirect "index.html"))
+
+  (GET "/drone-backward" []
+       (drone/backward)
+       (redirect "index.html"))
 
   (route/resources "/")
   (route/not-found "Page not found"))
 
-;; site function creates a handler suitable for a standard website,
-;; adding a bunch of standard ring middleware to app-route:
 (def handler
-  (handler/site app-routes))
+  (-> (handler/api app-routes)
+      (middleware/wrap-json-body {:keywords? true})
+      (middleware/wrap-json-response)))

@@ -4,6 +4,24 @@
             [domina.events :as ev]
             [ajax.core :refer [GET POST]]))
 
+(defn handler [response]
+  (.log js/console (str response)))
+
+(defn error-handler [{:keys [status status-text]}]
+  (.log js/console (str "something bad happened: " status " " status-text)))
+
+;; (defn action-take-off []
+;;   (.log js/console "asking drone to take-off")
+;;   (POST "/drone-fly" {:params {:left-right-tilt "Hello World"
+;;                                :front-back-tilt    "Bob"
+;;                                :vertical-speed 0
+;;                                :angular-speed 0}
+;;                       :format :json
+;;                       :response-format :json
+;;                       :keywords? true
+;;                       :handler handler
+;;                       :error-handler error-handler}))
+
 (defn action-take-off []
   (.log js/console "asking drone to take-off")
   (GET "/drone-take-off"))
@@ -28,6 +46,14 @@
   (.log js/console "asking drone to go down")
   (GET "/drone-down"))
 
+(defn action-forward []
+  (.log js/console "asking drone to go forward")
+  (GET "/drone-forward"))
+
+(defn action-backward []
+  (.log js/console "asking drone to go backward")
+  (GET "/drone-backward"))
+
 
 ;; define the function to attach validate-form to onsubmit event of
 ;; the form
@@ -42,6 +68,8 @@
       (ev/listen! (dom/by-id "left-button") :click action-left)
       (ev/listen! (dom/by-id "right-button") :click action-right)
       (ev/listen! (dom/by-id "up-button") :click action-up)
+      (ev/listen! (dom/by-id "forward-button") :click action-forward)
+      (ev/listen! (dom/by-id "backward-button") :click action-backward)
       (ev/listen! (dom/by-id "down-button") :click action-down))))
 
 ;; initialize the HTML page in unobtrusive way
