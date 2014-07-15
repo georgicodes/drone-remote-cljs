@@ -9,7 +9,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2069"]
                  [clj-drone "0.1.8"]
-                 [hiccup "1.0.5"]
+                 [cljs-ajax "0.2.6"]
                  [domina "1.0.2"]]
 
   :ring {:handler drone-remote-cljs.core/handler}
@@ -21,7 +21,7 @@
 
                 ;; Google Closure (CLS) options configuration
                 :compiler {;; CLS generated JS script filename
-                           :output-to "resources/public/js/remote.js"
+                           :output-to "resources/public/js/main.js"
 
                            ;; minimal JS optimization directive
                            :optimizations :whitespace
