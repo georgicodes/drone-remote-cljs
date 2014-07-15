@@ -28,6 +28,15 @@
 ;;         (drone/fly [params])
 ;;         {:body params})
 
+;;   W - pitch forward
+;; S - pitch backward
+;; A - roll left
+;; D - roll right
+;; Left Arrow - yaw left
+;; right arrow - yaw right
+;; Up arrow - increase alt.
+;; down arrow - decrease alt
+
   (GET "/drone-take-off" []
        (drone/init-drone-and-take-off)
        (redirect "index.html"))

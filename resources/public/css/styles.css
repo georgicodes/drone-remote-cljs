@@ -1,7 +1,51 @@
-#up-button {
-  padding-left:74px;
+#wrapper {
+  width: 80%;
+  height: 800px;
+  margin: auto;
 }
 
-.toggle-take-off {
+#leftcolumn, #rightcolumn {
+  border: 1px solid white;
+  float: left;
+  min-height: 450px;
+  color: white;
+}
 
+#forward-button {
+  margin:0 0 10px 74px;
+}
+
+#up-button {
+  margin:0 0 10px 74px;
+}
+
+.wasd {
+  width: 50%;
+  font-size: 48px;
+  float: left;
+}
+
+.wasd-outline {
+  border: 5px solid purple;
+}
+
+.arrows {
+  font-size: 48px;
+  margin-left: 50%;
+}
+
+ul {
+  font-size: 28px;
+}
+
+.controls {
+  font-size: 48px;
+}
+#take-off-button {
+  padding: 10px 80px;
+  margin: 10px 0 0 0;
+}
+#land-button {
+  padding: 10px 100px;
+  margin: 10px 0 0 0;
 }

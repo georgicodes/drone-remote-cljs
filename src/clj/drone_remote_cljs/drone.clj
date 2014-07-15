@@ -54,6 +54,9 @@
 (defn backward []
   (drone :tilt-back 0.2))
 
+(defn stop []
+  (drone :hover))
+
 (defn fly [data]
   (println "sending fly command to drone")
 ;;   (drone-do-for 3.75 :fly 0.2 0 0 0.5))
