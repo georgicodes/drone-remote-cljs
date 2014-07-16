@@ -65,6 +65,8 @@
 (defn symbol-from-int [number]
   (keyword (str number)))
 
+
+
 (def keys-to-actions {:87 [action-forward]})
 
 ;; 37 :left
@@ -84,8 +86,19 @@
            (.-getElementById js/document))
     (do
       (ev/listen! :keydown (fn [evt]
-                             (.log js/console (str "keypressed" (:keyCode evt)))
-                             (symbol-from-int (:keyCode evt)) keys-to-actions))
+                             (let [keycode (:keyCode evt)]
+                             (.log js/console (str "keypressed" keycode))
+                             (cond
+                              (= 87 keycode) (action-forward)
+                              (= 65 keycode) (action-left)
+                              (= 68 keycode) (action-right)
+                              (= 83 keycode) (action-backward)
+                              (= 38 keycode) (action-up)
+                              (= 37 keycode) (action-yaw-left)
+                              (= 40 keycode) (action-down)
+                              (= 39 keycode) (action-yaw-right)
+                              (= 13 keycode) (action-take-off)
+                              (= 32 keycode) (action-land)))))
       (ev/listen! (dom/by-id "take-off-button") :click action-take-off)
       (ev/listen! (dom/by-id "land-button") :click action-land)
       (ev/listen! (dom/by-id "left-button") :click action-left)
