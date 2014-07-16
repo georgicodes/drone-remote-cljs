@@ -34534,11 +34534,11 @@ goog.require("domina");
 drone_remote_cljs.main.handler = function handler(response) {
   return console.log([cljs.core.str(response)].join(""))
 };
-drone_remote_cljs.main.error_handler = function error_handler(p__6313) {
-  var map__6315 = p__6313;
-  var map__6315__$1 = cljs.core.seq_QMARK_.call(null, map__6315) ? cljs.core.apply.call(null, cljs.core.hash_map, map__6315) : map__6315;
-  var status_text = cljs.core.get.call(null, map__6315__$1, new cljs.core.Keyword(null, "status-text", "status-text", 4371493274));
-  var status = cljs.core.get.call(null, map__6315__$1, new cljs.core.Keyword(null, "status", "status", 4416389988));
+drone_remote_cljs.main.error_handler = function error_handler(p__6322) {
+  var map__6324 = p__6322;
+  var map__6324__$1 = cljs.core.seq_QMARK_.call(null, map__6324) ? cljs.core.apply.call(null, cljs.core.hash_map, map__6324) : map__6324;
+  var status_text = cljs.core.get.call(null, map__6324__$1, new cljs.core.Keyword(null, "status-text", "status-text", 4371493274));
+  var status = cljs.core.get.call(null, map__6324__$1, new cljs.core.Keyword(null, "status", "status", 4416389988));
   return console.log([cljs.core.str("something bad happened: "), cljs.core.str(status), cljs.core.str(" "), cljs.core.str(status_text)].join(""))
 };
 drone_remote_cljs.main.action_take_off = function action_take_off() {
@@ -34573,6 +34573,18 @@ drone_remote_cljs.main.action_backward = function action_backward() {
   console.log("asking drone to go backward");
   return ajax.core.GET.call(null, "/drone-backward")
 };
+drone_remote_cljs.main.action_yaw_left = function action_yaw_left() {
+  console.log("asking drone to yaw left");
+  return ajax.core.GET.call(null, "/drone-yaw-left")
+};
+drone_remote_cljs.main.action_yaw_right = function action_yaw_right() {
+  console.log("asking drone to yaw right");
+  return ajax.core.GET.call(null, "/drone-yaw-right")
+};
+drone_remote_cljs.main.symbol_from_int = function symbol_from_int(number) {
+  return cljs.core.keyword.call(null, [cljs.core.str(number)].join(""))
+};
+drone_remote_cljs.main.keys_to_actions = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "87", "87", 1013906033), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [drone_remote_cljs.main.action_forward], null)], null);
 drone_remote_cljs.main.init = function init() {
   if(cljs.core.truth_(function() {
     var and__3273__auto__ = document;
@@ -34582,10 +34594,17 @@ drone_remote_cljs.main.init = function init() {
       return and__3273__auto__
     }
   }())) {
+    domina.events.listen_BANG_.call(null, new cljs.core.Keyword(null, "keydown", "keydown", 4493897459), function(evt) {
+      console.log([cljs.core.str("keypressed"), cljs.core.str((new cljs.core.Keyword(null, "keyCode", "keyCode", 4492913758)).cljs$core$IFn$_invoke$arity$1(evt))].join(""));
+      drone_remote_cljs.main.symbol_from_int.call(null, (new cljs.core.Keyword(null, "keyCode", "keyCode", 4492913758)).cljs$core$IFn$_invoke$arity$1(evt));
+      return drone_remote_cljs.main.keys_to_actions
+    });
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "take-off-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_take_off);
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "land-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_land);
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "left-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_left);
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "right-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_right);
+    domina.events.listen_BANG_.call(null, domina.by_id.call(null, "yaw-left-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_yaw_left);
+    domina.events.listen_BANG_.call(null, domina.by_id.call(null, "yaw-right-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_yaw_right);
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "up-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_up);
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "forward-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_forward);
     domina.events.listen_BANG_.call(null, domina.by_id.call(null, "backward-button"), new cljs.core.Keyword(null, "click", "click", 1108654330), drone_remote_cljs.main.action_backward);

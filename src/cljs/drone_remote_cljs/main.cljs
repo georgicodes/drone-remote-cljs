@@ -1,5 +1,5 @@
 (ns drone-remote-cljs.main
-;;   (:use [drone-remote-cljs.remote :as remote])
+  ;;   (:use [drone-remote-cljs.remote :as remote])
   (:require [domina :as dom]
             [domina.events :as ev]
             [ajax.core :refer [GET POST]]))
@@ -54,6 +54,26 @@
   (.log js/console "asking drone to go backward")
   (GET "/drone-backward"))
 
+(defn action-yaw-left []
+  (.log js/console "asking drone to yaw left")
+  (GET "/drone-yaw-left"))
+
+(defn action-yaw-right []
+  (.log js/console "asking drone to yaw right")
+  (GET "/drone-yaw-right"))
+
+(defn symbol-from-int [number]
+  (keyword (str number)))
+
+(def keys-to-actions {:87 [action-forward]})
+
+;; 37 :left
+;;    38 :up
+;;    39 :right
+;;    40 :down
+;;    32 :space
+;;    13 :enter
+
 
 ;; define the function to attach validate-form to onsubmit event of
 ;; the form
@@ -63,10 +83,15 @@
   (if (and js/document
            (.-getElementById js/document))
     (do
+      (ev/listen! :keydown (fn [evt]
+                             (.log js/console (str "keypressed" (:keyCode evt)))
+                             (symbol-from-int (:keyCode evt)) keys-to-actions))
       (ev/listen! (dom/by-id "take-off-button") :click action-take-off)
       (ev/listen! (dom/by-id "land-button") :click action-land)
       (ev/listen! (dom/by-id "left-button") :click action-left)
       (ev/listen! (dom/by-id "right-button") :click action-right)
+      (ev/listen! (dom/by-id "yaw-left-button") :click action-yaw-left)
+      (ev/listen! (dom/by-id "yaw-right-button") :click action-yaw-right)
       (ev/listen! (dom/by-id "up-button") :click action-up)
       (ev/listen! (dom/by-id "forward-button") :click action-forward)
       (ev/listen! (dom/by-id "backward-button") :click action-backward)

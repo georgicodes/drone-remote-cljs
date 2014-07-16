@@ -69,6 +69,14 @@
        (drone/backward)
        (redirect "index.html"))
 
+  (GET "/drone-yaw-left" []
+       (drone/spin-left)
+       (redirect "index.html"))
+
+  (GET "/drone-yaw-right" []
+       (drone/spin-right)
+       (redirect "index.html"))
+
   (route/resources "/")
   (route/not-found "Page not found"))
 
