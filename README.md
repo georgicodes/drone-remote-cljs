@@ -1,18 +1,12 @@
-# drone-remote-cljs
+Clojure Drone Remote
+====================
 
-A Clojure library designed to ... well, that part is up to you.
+<em>Technologies: Clojure, ClojureScript, Compojure, Domina, Leiningen</em>
 
-## Usage
+What's more fun that controlling a Parrot AR Drone 2.0 using the keyboard like you would in a video game? Not much I wager.
 
-FIXME
+Drone Remote is a simple web app written in Clojure / ClojureScript using libraries such as Compojure and Domina.
 
 ## TODO
 * emergency status
 * batter indicator
-
-## License
-
-Copyright © 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
