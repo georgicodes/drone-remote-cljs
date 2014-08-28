@@ -11,11 +11,12 @@
 ;;   (drone :hover)
 ;;   (drone :land))
 
-;; (defn init-video []
+;; (defn drone-init-video []
+;;   (configure-save-video true)
 ;;   (init-video (drone-ip :default))
 ;;   (start-video (drone-ip :default)))
 
-;; (defn stop-video []
+;; (defn drone-stop-video []
 ;;   (end-video))
 
 (defn init-drone-and-take-off []
@@ -23,11 +24,13 @@
   (set-log-data [:seq-num :flying :battery-percent :control-state :roll :pitch :yaw
                 :velocity-x :velocity-y :velocity-z])
   (drone-initialize)
+;;   (drone-init-video)
   (drone-init-navdata)
   (drone-do-for 2 :take-off))
 
 (defn land []
   (drone :land)
+;;   (drone-stop-video)
   (end-navstream))
 
 (defn left []

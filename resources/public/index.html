@@ -1,52 +1,53 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Drone Remote CLJS</title>
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/keys.css" rel="stylesheet">
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <title>Drone Remote CLJS</title>
+        <!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="css/keys.css" rel="stylesheet">
+        <link href="css/animate.css" rel="stylesheet">
+    </head>
+    <body>
 
-    <div id="wrapper">
-        <h1> Drone Remote in CLJS </h1>
-        <div class="wasd">
-            <kbd id="forward-button" class="light">W</kbd><br/>
-            <kbd id="left-button" class="light">A</kbd>
-            <kbd id="backward-button" class="light">S</kbd>
-            <kbd id="right-button" class="light">D</kbd>
-        <ul>
-            <li>W = forward </li>
-            <li>A = roll left </li>
-            <li>S = backward </li>
-            <li>D = roll right </li>
-        </ul>
+        <div id="wrapper">
+            <h1> Drone Remote in CLJS </h1>
+            <div class="wasd">
+                <kbd id="forward-button" class="light">W</kbd><br/>
+                <kbd id="left-button" class="light">A</kbd>
+                <kbd id="backward-button" class="light">S</kbd>
+                <kbd id="right-button" class="light">D</kbd>
+                <ul>
+                    <li>W = forward </li>
+                    <li>A = roll left </li>
+                    <li>S = backward </li>
+                    <li>D = roll right </li>
+                </ul>
+            </div>
+
+            <div class="arrows">
+                <kbd id="up-button" class="light">↑</kbd><br/>
+                <kbd id="yaw-left-button" class="light">←</kbd>
+                <kbd id="down-button" class="light">↓</kbd>
+                <kbd id="yaw-right-button" class="light">→</kbd>
+                <ul>
+                    <li>↑ = up </li>
+                    <li>← = yaw left </li>
+                    <li>↓ = down </li>
+                    <li>→ = yaw right </li>
+                </ul>
+            </div>
+
+            <div class="controls">
+                <kbd id="take-off-button" class="light">enter</kbd>take off! <br/>
+                <kbd id="land-button" class="light">space</kbd> land
+            </div>
         </div>
 
-        <div class="arrows">
-            <kbd id="up-button" class="light">↑</kbd><br/>
-            <kbd id="yaw-left-button" class="light">←</kbd>
-            <kbd id="down-button" class="light">↓</kbd>
-            <kbd id="yaw-right-button" class="light">→</kbd>
-         <ul>
-            <li>↑ = up </li>
-            <li>← = yaw left </li>
-            <li>↓ = down </li>
-            <li>→ = yaw right </li>
-        </ul>
-        </div>
-
-        <div class="controls">
-            <kbd id="take-off-button" class="light">enter</kbd>take off! <br/>
-            <kbd id="land-button" class="light">space</kbd> land
-        </div>
-    </div>
-
-    <!-- pointing to cljsbuild generated js file -->
-    <script src="js/main.js"></script>
-</body>
+        <!-- pointing to cljsbuild generated js file -->
+        <script src="js/main.js"></script>
+    </body>
 </html>

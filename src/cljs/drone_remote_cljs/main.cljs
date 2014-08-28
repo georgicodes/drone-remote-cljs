@@ -23,6 +23,9 @@
 ;;                       :error-handler error-handler}))
 
 (defn action-take-off []
+  (dom/remove-class! (dom/by-id "take-off-button") "animated bounce")
+;;   element.offsetWidth = element.offsetWidth;
+  (dom/add-class! (dom/by-id "take-off-button") "animated bounce")
   (.log js/console "asking drone to take-off")
   (GET "/drone-take-off"))
 
@@ -67,21 +70,12 @@
 
 
 
-(def keys-to-actions {:87 [action-forward]})
-
-;; 37 :left
-;;    38 :up
-;;    39 :right
-;;    40 :down
-;;    32 :space
-;;    13 :enter
+(def keys-to-actions {:87 [action-forward]
+                      :65 [action-left]})
 
 
-;; define the function to attach validate-form to onsubmit event of
-;; the form
+
 (defn init []
-  ;; verify that js/document exists and that it has a getElementById
-  ;; property
   (if (and js/document
            (.-getElementById js/document))
     (do
@@ -110,5 +104,4 @@
       (ev/listen! (dom/by-id "backward-button") :click action-backward)
       (ev/listen! (dom/by-id "down-button") :click action-down))))
 
-;; initialize the HTML page in unobtrusive way
 (set! (.-onload js/window) init)

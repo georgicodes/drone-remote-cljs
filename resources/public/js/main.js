@@ -34534,14 +34534,16 @@ goog.require("domina");
 drone_remote_cljs.main.handler = function handler(response) {
   return console.log([cljs.core.str(response)].join(""))
 };
-drone_remote_cljs.main.error_handler = function error_handler(p__6352) {
-  var map__6354 = p__6352;
-  var map__6354__$1 = cljs.core.seq_QMARK_.call(null, map__6354) ? cljs.core.apply.call(null, cljs.core.hash_map, map__6354) : map__6354;
-  var status_text = cljs.core.get.call(null, map__6354__$1, new cljs.core.Keyword(null, "status-text", "status-text", 4371493274));
-  var status = cljs.core.get.call(null, map__6354__$1, new cljs.core.Keyword(null, "status", "status", 4416389988));
+drone_remote_cljs.main.error_handler = function error_handler(p__6316) {
+  var map__6318 = p__6316;
+  var map__6318__$1 = cljs.core.seq_QMARK_.call(null, map__6318) ? cljs.core.apply.call(null, cljs.core.hash_map, map__6318) : map__6318;
+  var status_text = cljs.core.get.call(null, map__6318__$1, new cljs.core.Keyword(null, "status-text", "status-text", 4371493274));
+  var status = cljs.core.get.call(null, map__6318__$1, new cljs.core.Keyword(null, "status", "status", 4416389988));
   return console.log([cljs.core.str("something bad happened: "), cljs.core.str(status), cljs.core.str(" "), cljs.core.str(status_text)].join(""))
 };
 drone_remote_cljs.main.action_take_off = function action_take_off() {
+  domina.remove_class_BANG_.call(null, domina.by_id.call(null, "take-off-button"), "animated bounce");
+  domina.add_class_BANG_.call(null, domina.by_id.call(null, "take-off-button"), "animated bounce");
   console.log("asking drone to take-off");
   return ajax.core.GET.call(null, "/drone-take-off")
 };
@@ -34584,7 +34586,7 @@ drone_remote_cljs.main.action_yaw_right = function action_yaw_right() {
 drone_remote_cljs.main.symbol_from_int = function symbol_from_int(number) {
   return cljs.core.keyword.call(null, [cljs.core.str(number)].join(""))
 };
-drone_remote_cljs.main.keys_to_actions = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "87", "87", 1013906033), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [drone_remote_cljs.main.action_forward], null)], null);
+drone_remote_cljs.main.keys_to_actions = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "87", "87", 1013906033), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [drone_remote_cljs.main.action_forward], null), new cljs.core.Keyword(null, "65", "65", 1013905969), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [drone_remote_cljs.main.action_left], null)], null);
 drone_remote_cljs.main.init = function init() {
   if(cljs.core.truth_(function() {
     var and__3273__auto__ = document;

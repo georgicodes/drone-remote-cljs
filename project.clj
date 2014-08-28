@@ -7,7 +7,7 @@
   :source-paths ["src/clj" "src/cljs"]
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2069"]
-                 [clj-drone "0.1.8"]
+                 [clj-drone "0.1.9"]
                  [cljs-ajax "0.2.6"]
                  [domina "1.0.2"]
                  [ring/ring-json "0.3.1"]
